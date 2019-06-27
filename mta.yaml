@@ -1,0 +1,20 @@
+ID: ALM01
+_schema-version: '2.1'
+description: Treinamento ALM on SAP Cloud Platform
+version: 0.0.1
+
+modules:
+ - name: HANAModule
+   type: hdb
+   path: HANAModule
+   requires:
+    - name: hdi_HANAModule
+
+resources:
+ - name: hdi_HANAModule
+   parameters:
+      config:
+         schema: HANAModule
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container

@@ -1,0 +1,16 @@
+namespace ALM01.HANAModule;
+
+context Location {
+
+	@Comment : 'Location'
+    entity Location {
+        key Id : String(10);
+	        City: String(30);
+	        Latitude: String(10);
+	        Longitude: String(10);
+    }
+    technical configuration {
+        column store;
+    };
+
+};
