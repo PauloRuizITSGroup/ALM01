@@ -1,0 +1,4 @@
+service {    
+	"ALM01.HANAModule::Location.Location"
+		as "Location";
+}

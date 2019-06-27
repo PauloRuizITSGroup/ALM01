@@ -2,22 +2,37 @@ ID: ALM01
 _schema-version: '2.1'
 description: Treinamento ALM on SAP Cloud Platform
 version: 0.0.1
-
 modules:
- - name: HANAModule
-   type: hdb
-   path: HANAModule
-   requires:
-    - name: hdi_HANAModule
-
+  - name: HANAModule
+    type: hdb
+    path: HANAModule
+    requires:
+      - name: hdi_HANAModule
+  - name: APIModule
+    type: nodejs
+    path: APIModule
+    provides:
+      - name: APIModule_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_HANAModule
+      - name: HANAModule
+      - name: xsuaa-ALM
 resources:
- - name: hdi_HANAModule
-   parameters:
+  - name: hdi_HANAModule
+    parameters:
       config:
-         schema: HANA
+        schema: HANA
       service-name: ALM01-hdiHANAModule-S0020407867-wob4l2YKvLBPq1CjQd
       service: hana
       service-plan: hdi-shared
-   properties:
+    properties:
       hdi-container-name: '${service-name}'
-   type: org.cloudfoundry.existing-service
+    type: org.cloudfoundry.existing-service
+  - name: xsuaa-ALM
+    parameters:
+      service-name: xsahaa-uaa
+      service: xsuaa
+      service-plan: application
+    type: org.cloudfoundry.existing-service
